@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Albums</title>
+</head>
+<script src="/static/js/jquery.js"></script>
+
+<body>
+<h1>Albums</h1>
+
+{% for album in albums %}
+
+<div style="display:inline-block;width: 200pt">
+    <h4>{{ album.Title }}({{ album.MediaItemsCount }})</h4><br>
+    <a href="/pictures?albumId={{ album.ID }}">
+        <img src="{{ album.CoverPhotoBaseURL }}=w200-h200" id="{{ album.ID }}">
+    </a>
+</div>
+{% endfor %}
+
+</body>
+</html>
