@@ -19,8 +19,12 @@
 
 <body style="margin: 0;">
 <button type="button" onclick="openFullscreen();">full screen</button>
+<label for="switch_delay">Switch pause: </label>
+    <input id="switch_delay" type="number" min="5" max="86400"/>
+<a href="/albums">Albums</a>
 
-<div id="picframe" style="text-align:center; width: 100%; height:100%; background-color: #000000"></div>
+
+<div id="picframe" style="text-align:center; width: 100%; height:100%; background-color: #000000; vertical-align: middle;"></div>
 
 <script>
     let initTimout = 5;
@@ -58,6 +62,9 @@
         let imgSrc = '/loadpic?picId=' + p;
         image.addClass('img-fluid');
         image.attr("src", imgSrc);
+        image.attr("margin-top", "auto");
+        image.attr("margin-bottom", "auto");
+        image.attr("display", "block");
         return image
     }
 
@@ -101,6 +108,12 @@
         } else if (elem.msRequestFullscreen) { /* IE/Edge */
             elem.msRequestFullscreen();
         }
+    }
+
+    let switchDelay = document.getElementById("switch_delay");
+    switchDelay.value = initTimout;
+    switchDelay.onchange = function(e) {
+        initTimout = switchDelay.value;
     }
 
     let nextImg = prepPic(nextImgPos);
